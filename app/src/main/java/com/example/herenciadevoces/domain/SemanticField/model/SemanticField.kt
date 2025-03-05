@@ -16,8 +16,8 @@ fun semanticFieldEntity.toSemanticField(): SemanticField {
     )
 }
 
-fun semanticField.toSemanticFieldEntity(): semanticFieldEntity {
-    return SemanticFieldEntity(
+fun SemanticField.toSemanticFieldEntity(): semanticFieldEntity {
+    return semanticFieldEntity(
         idSemanticField = idSemanticField,
         semanticFieldName = semanticFieldName,
         pathName = pathName

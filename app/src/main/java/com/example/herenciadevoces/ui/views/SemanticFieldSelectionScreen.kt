@@ -31,6 +31,7 @@ import com.example.herenciadevoces.R
 import com.example.herenciadevoces.domain.SemanticField.model.SemanticField
 import com.example.herenciadevoces.ui.viewmodels.semanticFieldSelectionViewModel
 
+
 @Composable
 fun SemanticFieldSelectionScreen(
     viewModel: semanticFieldSelectionViewModel = hiltViewModel(),
@@ -73,7 +74,7 @@ fun Grid(modifier: Modifier,viewModel: semanticFieldSelectionViewModel,navigateT
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(state.semanticFields) { semanticField ->
+        items(state.semanticField) { semanticField ->
             SemanticFieldButton(semanticField,navigateToWS)
         }
     }
@@ -100,7 +101,7 @@ fun SemanticFieldButton(semanticField: SemanticField,navigateToWS: (Int) -> Unit
             )
         }
         Text(
-            text = semanticField.semanticField,
+            text = semanticField.semanticFieldName,
             fontSize = 16.sp,
             color = Color.Black,
             textAlign = TextAlign.Center,

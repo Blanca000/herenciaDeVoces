@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@entity(tableName="language")
+@Entity(tableName="language")
 data class languageEntity(
-    @primaryKey(autogenerate = true)val idLanguage: Int = 1,
+    @PrimaryKey(autoGenerate = true)val idLanguage: Int = 1,
     @ColumnInfo(name = "languageName")val languageName: String
 )

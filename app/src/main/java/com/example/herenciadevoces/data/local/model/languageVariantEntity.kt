@@ -19,8 +19,8 @@ import androidx.room.PrimaryKey
     indices = [Index(value = ["idLanguage"])]
 )
 data class languageVariantEntity(
-    @primaryKey(autogenerate = true)val idLanguageVariant: Int = 1,
+    @PrimaryKey(autoGenerate = true)val idLanguageVariant: Int = 1,
     @ColumnInfo(name = "idLanguage")val idLanguage: Int,
     @ColumnInfo(name = "variantName")val variantName: String,
-    @ColumnInfo(name = "vaiantRegionName")val vaiantRegionName: String,
+    @ColumnInfo(name = "variantRegionName")val variantRegionName: String,
 )

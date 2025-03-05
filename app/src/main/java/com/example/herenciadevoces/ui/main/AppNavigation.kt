@@ -8,21 +8,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.herenciadevoces.domain.SemanticField.model.SemanticField
 import com.example.herenciadevoces.ui.viewmodels.variantSelectionViewModel
-import com.example.herenciadevoces.ui.views.semanticFieldSelectionScreen
-import com.example.herenciadevoces.ui.views.variantSelectionScreen
-import com.example.herenciadevoces.ui.views.wordSoundsScreen
-import kotlinx.serializacion.Serializable
+import com.example.herenciadevoces.ui.views.SemanticFieldSelectionScreen
+import com.example.herenciadevoces.ui.views.VariantSelectionScreen
+import com.example.herenciadevoces.ui.views.WordSoundsScreen
+import kotlinx.serialization.Serializable
+
 
 @Serializable
-object variantSelection
+object VariantSelection
 
 @Serializable
-object semanticFieldSelection
+object SemanticFieldSelection
 
 @Serializable
-data class wordSounds(val idsVariants: List<Int>, val idSemanticField: Int)
+data class WordSounds(val idsVariants: List<Int>, val idSemanticField: Int)
 
 @Composable
 fun AppNavigation(){
@@ -31,27 +31,27 @@ fun AppNavigation(){
     val listIdsVariants = remember { mutableStateListOf<Int>() }
     NavHost(
         navController = navController,
-        startDestination = variantSelection
+        startDestination = VariantSelection
     ){
-        composable<variantSelection>{
-            variantSelectionScreen(variantSelectionViewModel){
-                idsVariants -> navController.navigate(semanticFieldSelection)
+        composable<VariantSelection>{
+            VariantSelectionScreen(variantSelectionViewModel){
+                idsLanguagesVariants -> navController.navigate(SemanticFieldSelection)
                 listIdsVariants.clear()
-                listIdsVariants.addAll(idsVariants)
+                listIdsVariants.addAll(idsLanguagesVariants)
                 Log.d("LIST IDS VARIANTS ", listIdsVariants.toString())
             }
         }
 
 
 
-        composable<semanticFieldSelection>{
+        composable<SemanticFieldSelection>{
             SemanticFieldSelectionScreen{
-                idSemanticField -> navController.navigate(wordSounds(idsVariants = listIdsVariants.toList(),idSemanticField = idSemanticField))
+                idSemanticField -> navController.navigate(WordSounds(idsVariants = listIdsVariants.toList(),idSemanticField = idSemanticField))
             }
         }
 
-        composable<wordSounds>{
-            wordSounds()
+        composable<WordSounds>{
+           WordSoundsScreen()
         }
     }
 

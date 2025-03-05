@@ -9,14 +9,14 @@ data class Language(
 
 fun languageEntity.toLanguage(): Language {
     return Language(
-        val idLanguage: Int,
-        val languageName: String
+        idLanguage = idLanguage,
+        languageName = languageName
     )
 }
 
 fun Language.toLanguageEntity(): languageEntity {
-    return Language(
-        val idLanguage: Int,
-        val languageName: String
+    return languageEntity(
+        idLanguage = idLanguage,
+        languageName = languageName
     )
 }

@@ -1,10 +1,13 @@
 package com.example.herenciadevoces.di
 
-import  android.content.Context
-import  androidx.room.Room
-import  com.example.herenciadevoces.data.local.dao.semanticFieldDAO
-import  com.example.herenciadevoces.data.local.dao.spanishWordDataDAO
-import  com.example.herenciadevoces.data.local.database.herenciadevocesDataBase
+import android.content.Context
+import androidx.room.Room
+import com.example.herenciadevoces.data.local.dao.languageDAO
+import com.example.herenciadevoces.data.local.dao.languageVariantDAO
+import com.example.herenciadevoces.data.local.dao.languageWordDataDAO
+import com.example.herenciadevoces.data.local.dao.semanticFieldDAO
+import com.example.herenciadevoces.data.local.dao.spanishWordDataDAO
+import com.example.herenciadevoces.data.local.database.herenciadevocesDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +22,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesherenciaDeVocesRoomDataBase(@ApplicationContext app:Context): herenciaDeVoces{
+    fun providesherenciaDeVocesRoomDataBase(@ApplicationContext app: Context): herenciadevocesDataBase {
         val database = Room.databaseBuilder(
             app,
-            herenciaDeVocesDataBase::class.java,
+            herenciadevocesDataBase::class.java,
             name = "herenciaDeVocesDB.db"
         ).createFromAsset("database/herenciaDeVocesDB.db").build()
         return database
@@ -30,8 +33,21 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSemanticFieldDao(HerenciaDevocesDataBase: herenciaDevocesDataBase) : SemanticFieldDAO = herenciadevocesDataBase.semanticFieldDAO()
+    fun providesSemanticFieldDao(herenciadevocesDataBase: herenciadevocesDataBase) : semanticFieldDAO = herenciadevocesDataBase.semanticFieldDAO()
 
     @Provides
     @Singleton
-    fun providesSpanishWordDataDao(HerenciaDevocesDataBase: herenciaDevocesDataBase) : SpanishWordDatadDAO = herenciadevocesDataBase.spanishWordDataDAO()
+    fun providesLanguageDao(herenciadevocesDataBase: herenciadevocesDataBase) : languageDAO = herenciadevocesDataBase.languageDAO()
+
+    @Provides
+    @Singleton
+    fun providesLanguageVariantDao(herenciadevocesDataBase: herenciadevocesDataBase) : languageVariantDAO = herenciadevocesDataBase.languageVariant()
+
+    @Provides
+    @Singleton
+    fun providesLanguageWordDataDao(herenciadevocesDataBase: herenciadevocesDataBase) : languageWordDataDAO = herenciadevocesDataBase.languageWordDataDAO()
+
+    @Provides
+    @Singleton
+    fun providesSpanishWordDataDao(herenciadevocesDataBase: herenciadevocesDataBase) : spanishWordDataDAO = herenciadevocesDataBase.spanishWordDataDAO()
+}

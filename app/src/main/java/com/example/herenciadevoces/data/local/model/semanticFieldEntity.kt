@@ -4,9 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@entity(tableName = "semanticField")
+@Entity(tableName = "semanticField")
 data class semanticFieldEntity(
-    @PrimaryKey(autogenerate = true)val idSemanticField: Int = 1,
+    @PrimaryKey(autoGenerate = true)val idSemanticField: Int = 1,
     @ColumnInfo(name = "semanticFieldName")val semanticFieldName: String,
-    @ColumnInfo(name = "pathName")val pathName: String
+    @ColumnInfo(name = "pathImage")val pathName: String
 )

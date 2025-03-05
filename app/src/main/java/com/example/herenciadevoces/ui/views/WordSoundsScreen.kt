@@ -35,8 +35,8 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import com.example.herenciadevoces.R
-import com.example.herenciadevoces.ui.utils.VariantData
-import com.example.herenciadevoces.ui.utils.WordData
+import com.example.herenciadevoces.domain.SpanishWordData.model.SpanishWordData
+import com.example.herenciadevoces.domain.languageWordData.model.LanguageWordData
 import java.io.InputStream
 
 @Composable
@@ -55,7 +55,7 @@ fun WordSoundsScreen(viewModel: wordSoundsViewModel = hiltViewModel()) {
                 WordImage(wordData)
                 Word(wordData)
                 SpanishSoundButton(wordData)
-                wordData.variantData.forEach { variantData ->
+                wordData.LWD.forEach { variantData ->
                     VariantSoundButton(variantData)
                 }
 
@@ -68,7 +68,7 @@ fun WordSoundsScreen(viewModel: wordSoundsViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun WordImage(wordData: WordData) {
+fun WordImage(wordData: SpanishWordData) {
     val context = LocalContext.current
     val currentPath by rememberUpdatedState(newValue = wordData.pathImage)
 
@@ -91,17 +91,17 @@ fun WordImage(wordData: WordData) {
 }
 
 @Composable
-fun Word(wordData: WordData) {
+fun Word(wordData: SpanishWordData) {
     Text(text = wordData.spanishWord, modifier = Modifier.padding(vertical = 12.dp) , fontSize = 20.sp)
 }
 
 
 @Composable
-fun VariantSoundButton(wordData: VariantData) {
+fun VariantSoundButton(wordData: LanguageWordData) {
     val context = LocalContext.current
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
 
-    Text(text = wordData.variantName)
+    Text(text = "AQUI VA EL NOMBRE DE LA VARIANTE")
     ElevatedButton(onClick = {
         mediaPlayer?.release() // Libera recursos si ya está reproduciendo
         mediaPlayer = MediaPlayer().apply {
@@ -115,7 +115,7 @@ fun VariantSoundButton(wordData: VariantData) {
             start()
         }
     }) {
-        Text(text = wordData.mixtecWord, modifier = Modifier.padding(end = 4.dp))
+        Text(text = wordData.languageWord, modifier = Modifier.padding(end = 4.dp))
         Icon(
             painter = painterResource(id = R.drawable.ic_volumeup),
             contentDescription = "Reproducir Sonido",
@@ -126,7 +126,7 @@ fun VariantSoundButton(wordData: VariantData) {
 }
 
 @Composable
-fun SpanishSoundButton(wordData: WordData) {
+fun SpanishSoundButton(wordData: SpanishWordData) {
     val context = LocalContext.current
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
 

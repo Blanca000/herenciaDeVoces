@@ -20,6 +20,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -51,8 +52,15 @@ fun VariantSelectionScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Header(Modifier.align(Alignment.TopCenter))
-        Body(Modifier.align(Alignment.TopCenter),viewModel,navigateToSFS)
+        //if (viewModel.isLoading.value) {
+          //  Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            //    CircularProgressIndicator()
+            //}
+        //} else {
+            Header(Modifier.align(Alignment.TopCenter))
+            Body(Modifier.align(Alignment.TopCenter),viewModel,navigateToSFS)
+        //}
+
     }
 }
 
@@ -81,16 +89,16 @@ fun Body(
     viewModel: variantSelectionViewModel,
     navigateToSFS: (List<Int>) -> Unit
 ) {
-    val selectedVariants by viewModel.selectedVariants.collectAsState()
+    val selectedVariants by viewModel.selectedLanguageVariants.collectAsState()
     val state = viewModel.state.value
     LazyColumn(
         modifier = Modifier.padding(start = 15.dp, top = 60.dp, end = 15.dp, bottom = 20.dp )
     ){
-        items(state.mixtecVariants) { variant ->
+        items(state.languageVariants) { variant ->
             VariantOption(
                 name = variant.variantName,
-                isSelected = selectedVariants.contains(variant.idVariant),
-                onSelectionChanged = {viewModel.toggleSelection(variant.idVariant)}
+                isSelected = selectedVariants.contains(variant.idLanguageVariant),
+                onSelectionChanged = {viewModel.toggleSelection(variant.idLanguageVariant)}
             )
             Spacer(modifier = Modifier.height(10.dp))
         }

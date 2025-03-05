@@ -16,11 +16,11 @@ data class LanguageWordData(
 
 fun languageWordDataEntity.toLanguageWordData(): LanguageWordData {
     return LanguageWordData(
-        val idLanguageWordData: Int,
-        val idSpanishWordData: idSpanishWordData,
-        val idSemanticField: idSemanticField,
-        val idLanguageVariant: idLanguageVariant,
-        val pathAudio: pathAudio,
-        val languageWord: languageWord
+        idLanguageWordData = idLanguageWordData,
+        idSpanishWordData = idSpanishWordData,
+        idSemanticField = idSemanticField,
+        idLanguageVariant = idLanguageVariant,
+        pathAudio = pathAudio,
+        languageWord = languageWord
     )
 }

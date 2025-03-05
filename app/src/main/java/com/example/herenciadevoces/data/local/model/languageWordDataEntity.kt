@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "languageWordData",
-    foreignKey = [
+    foreignKeys = [
         ForeignKey(
             entity = spanishWordDataEntity::class,
             parentColumns = ["idSpanishWordData"],
@@ -37,7 +37,7 @@ import androidx.room.PrimaryKey
 
 data class languageWordDataEntity(
     @PrimaryKey(autoGenerate = true)val idLanguageWordData: Int = 1,
-    @ColumnInfo(name = "idSpanishWordData")val idSpanishWordData : String,
+    @ColumnInfo(name = "idSpanishWordData")val idSpanishWordData : Int,
     @ColumnInfo(name = "idSemanticField")val idSemanticField : Int,
     @ColumnInfo(name = "idLanguageVariant")val idLanguageVariant : Int,
     @ColumnInfo(name = "pathAudio")val pathAudio : String,

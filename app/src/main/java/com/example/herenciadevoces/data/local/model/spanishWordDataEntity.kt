@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "spanishWordData",
-    foreignKey = [
+    foreignKeys = [
         ForeignKey(
             entity = semanticFieldEntity::class,
             parentColumns = ["idSemanticField"],

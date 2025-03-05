@@ -24,11 +24,11 @@ import com.example.herenciadevoces.data.local.model.spanishWordDataEntity
     version = 1)
 
 abstract class herenciadevocesDataBase : RoomDatabase() {
-    abstract fun LanguageDAO():languageDAO
-    abstract fun LanguageVariant():languageVariantDAO
-    abstract fun LanguageWordDataDAO():languageWordDataDAO
-    abstract fun SemanticFieldDAO():semanticFieldDAO
-    abstract fun SpanishWordDataDAO():spanishWordDataDAO
+    abstract fun languageDAO():languageDAO
+    abstract fun languageVariant():languageVariantDAO
+    abstract fun languageWordDataDAO():languageWordDataDAO
+    abstract fun semanticFieldDAO():semanticFieldDAO
+    abstract fun spanishWordDataDAO():spanishWordDataDAO
 }
 
 

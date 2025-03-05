@@ -12,18 +12,18 @@ data class LanguageVariant(
 
 fun languageVariantEntity.toLanguageVariant(): LanguageVariant {
     return LanguageVariant(
-        val idLanguageVariant: idLanguageVariant,
-        val idLanguage: idLanguage,
-        val variantName: variantName,
-        val variantRegionName: variantRegionName
+        idLanguageVariant = idLanguageVariant,
+        idLanguage = idLanguage,
+        variantName = variantName,
+        variantRegionName = variantRegionName
     )
 }
 
 fun LanguageVariant.toLanguageVariantEntity(): languageVariantEntity {
-    return LanguageVariant(
-        val idLanguageVariant: idLanguageVariant,
-        val idLanguage: idLanguage,
-        val variantName: variantName,
-        val variantRegionName: variantRegionName
+    return languageVariantEntity(
+        idLanguageVariant = idLanguageVariant,
+        idLanguage = idLanguage,
+        variantName = variantName,
+        variantRegionName = variantRegionName
     )
 }

@@ -11,8 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.herenciadevoces.HerenciaDeVocesApplication
-import com.example.herenciadevoces.ui.theme.herenciaDeVoces
+import com.example.herenciadevoces.ui.theme.herenciaDeVocesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HerenciaDeVocesTheme {
+            herenciaDeVocesTheme {
                 AppNavigation()
             }
         }
