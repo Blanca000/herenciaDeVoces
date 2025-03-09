@@ -1,0 +1,310 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "8fe85c7be16256a5f1e3644910b6110c",
+    "entities": [
+      {
+        "tableName": "language",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idLanguage` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `languageName` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idLanguage",
+            "columnName": "idLanguage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageName",
+            "columnName": "languageName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idLanguage"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "languageVariant",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idLanguageVariant` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idLanguage` INTEGER NOT NULL, `variantName` TEXT NOT NULL, `variantRegionName` TEXT NOT NULL, FOREIGN KEY(`idLanguage`) REFERENCES `language`(`idLanguage`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idLanguageVariant",
+            "columnName": "idLanguageVariant",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idLanguage",
+            "columnName": "idLanguage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "variantName",
+            "columnName": "variantName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "variantRegionName",
+            "columnName": "variantRegionName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idLanguageVariant"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_languageVariant_idLanguage",
+            "unique": false,
+            "columnNames": [
+              "idLanguage"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_languageVariant_idLanguage` ON `${TABLE_NAME}` (`idLanguage`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "language",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idLanguage"
+            ],
+            "referencedColumns": [
+              "idLanguage"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "languageWordData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idLanguageWordData` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idSpanishWordData` INTEGER NOT NULL, `idSemanticField` INTEGER NOT NULL, `idLanguageVariant` INTEGER NOT NULL, `pathAudio` TEXT NOT NULL, `languageWord` TEXT NOT NULL, FOREIGN KEY(`idSpanishWordData`) REFERENCES `spanishWordData`(`idSpanishWordData`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idSemanticField`) REFERENCES `semanticField`(`idSemanticField`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idLanguageVariant`) REFERENCES `languageVariant`(`idLanguageVariant`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idLanguageWordData",
+            "columnName": "idLanguageWordData",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSpanishWordData",
+            "columnName": "idSpanishWordData",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSemanticField",
+            "columnName": "idSemanticField",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idLanguageVariant",
+            "columnName": "idLanguageVariant",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathAudio",
+            "columnName": "pathAudio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageWord",
+            "columnName": "languageWord",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idLanguageWordData"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_languageWordData_idSpanishWordData",
+            "unique": false,
+            "columnNames": [
+              "idSpanishWordData"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_languageWordData_idSpanishWordData` ON `${TABLE_NAME}` (`idSpanishWordData`)"
+          },
+          {
+            "name": "index_languageWordData_idSemanticField",
+            "unique": false,
+            "columnNames": [
+              "idSemanticField"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_languageWordData_idSemanticField` ON `${TABLE_NAME}` (`idSemanticField`)"
+          },
+          {
+            "name": "index_languageWordData_idLanguageVariant",
+            "unique": false,
+            "columnNames": [
+              "idLanguageVariant"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_languageWordData_idLanguageVariant` ON `${TABLE_NAME}` (`idLanguageVariant`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "spanishWordData",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idSpanishWordData"
+            ],
+            "referencedColumns": [
+              "idSpanishWordData"
+            ]
+          },
+          {
+            "table": "semanticField",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idSemanticField"
+            ],
+            "referencedColumns": [
+              "idSemanticField"
+            ]
+          },
+          {
+            "table": "languageVariant",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idLanguageVariant"
+            ],
+            "referencedColumns": [
+              "idLanguageVariant"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "semanticField",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idSemanticField` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `semanticFieldName` TEXT NOT NULL, `pathImage` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idSemanticField",
+            "columnName": "idSemanticField",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "semanticFieldName",
+            "columnName": "semanticFieldName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathName",
+            "columnName": "pathImage",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idSemanticField"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "spanishWordData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idSpanishWordData` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idSemanticField` INTEGER NOT NULL, `spanishWord` TEXT NOT NULL, `pathAudio` TEXT NOT NULL, `pathImage` TEXT NOT NULL, FOREIGN KEY(`idSemanticField`) REFERENCES `semanticField`(`idSemanticField`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idSpanishWordData",
+            "columnName": "idSpanishWordData",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSemanticField",
+            "columnName": "idSemanticField",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spanishWord",
+            "columnName": "spanishWord",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathAudio",
+            "columnName": "pathAudio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathImage",
+            "columnName": "pathImage",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idSpanishWordData"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_spanishWordData_idSemanticField",
+            "unique": false,
+            "columnNames": [
+              "idSemanticField"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_spanishWordData_idSemanticField` ON `${TABLE_NAME}` (`idSemanticField`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "semanticField",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idSemanticField"
+            ],
+            "referencedColumns": [
+              "idSemanticField"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8fe85c7be16256a5f1e3644910b6110c')"
+    ]
+  }
+}
