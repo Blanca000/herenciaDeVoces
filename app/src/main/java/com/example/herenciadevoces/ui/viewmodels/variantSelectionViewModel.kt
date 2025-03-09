@@ -24,7 +24,7 @@ class variantSelectionViewModel @Inject constructor(
     private val _selectedLanguageVariants = MutableStateFlow<List<Int>>(emptyList())
     val state: State<languageVariantState> = _state
     val selectedLanguageVariants = _selectedLanguageVariants.asStateFlow()
-    //val isLoading = mutableStateOf(true) // Estado de carga inicial
+    val isLoading = mutableStateOf(true) // Estado de carga inicial
 
     init {
         collectLanguageVariants()
@@ -32,11 +32,23 @@ class variantSelectionViewModel @Inject constructor(
 
     private fun collectLanguageVariants(){
         viewModelScope.launch (Dispatchers.IO) {
+            withContext(Dispatchers.Main){
+                isLoading.value = true;
+            }
+            try {
                 val fetchedLanguageVariants = getLanguagesVariants()
                 Log.d("LANGUAGE VARIANTS", fetchedLanguageVariants.toString())
                 withContext(Dispatchers.Main){
                     _state.value = _state.value.copy(languageVariants = fetchedLanguageVariants )
+                    isLoading.value = false;
                 }
+            }catch (e: Exception) {
+                withContext(Dispatchers.Main){
+                    isLoading.value = false;
+                }
+                Log.e("VariantViewModel", "Error loading language variants", e)
+            }
+
         }
     }
 
