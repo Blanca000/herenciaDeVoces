@@ -32,23 +32,12 @@ class variantSelectionViewModel @Inject constructor(
 
     private fun collectLanguageVariants(){
         viewModelScope.launch (Dispatchers.IO) {
+            val fetchedLanguageVariants = getLanguagesVariants()
+            Log.d("LANGUAGE VARIANTS", fetchedLanguageVariants.toString())
             withContext(Dispatchers.Main){
-                isLoading.value = true;
+                _state.value = _state.value.copy(languageVariants = fetchedLanguageVariants )
+                isLoading.value = false;
             }
-            try {
-                val fetchedLanguageVariants = getLanguagesVariants()
-                Log.d("LANGUAGE VARIANTS", fetchedLanguageVariants.toString())
-                withContext(Dispatchers.Main){
-                    _state.value = _state.value.copy(languageVariants = fetchedLanguageVariants )
-                    isLoading.value = false;
-                }
-            }catch (e: Exception) {
-                withContext(Dispatchers.Main){
-                    isLoading.value = false;
-                }
-                Log.e("VariantViewModel", "Error loading language variants", e)
-            }
-
         }
     }
 

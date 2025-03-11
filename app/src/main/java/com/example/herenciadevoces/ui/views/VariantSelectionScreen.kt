@@ -53,16 +53,8 @@ fun VariantSelectionScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        if (viewModel.isLoading.value) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Image(painter = painterResource(id = R.drawable.main_screen), contentDescription = "Loading Image")
-                CircularProgressIndicator()
-            }
-        } else {
-            Header(Modifier.align(Alignment.TopCenter))
-            Body(Modifier.align(Alignment.TopCenter),viewModel,navigateToSFS)
-        }
-
+        Header(Modifier.align(Alignment.TopCenter))
+        Body(Modifier.align(Alignment.TopCenter),viewModel,navigateToSFS)
     }
 }
 
