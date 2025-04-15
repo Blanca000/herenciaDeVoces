@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class variantSelectionViewModel @Inject constructor(
+class VariantSelectionViewModel @Inject constructor(
     private val getLanguagesVariants : GetLanguageVariants
 ) : ViewModel() {
     private val _state = mutableStateOf(languageVariantState())

@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class wordSoundsViewModel @Inject constructor(
+class WordSoundsViewModel @Inject constructor(
     private val getSpanishWordDataBySF: GetSpanishWordDataBySF,
     private val getLWDBySWDandLV: GetLWDBySWDandLV,
     savedStateHandle: SavedStateHandle,

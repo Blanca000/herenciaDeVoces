@@ -20,7 +20,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -42,12 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.herenciadevoces.R
 import com.example.herenciadevoces.ui.theme.Orange
-import com.example.herenciadevoces.ui.viewmodels.variantSelectionViewModel
-import androidx.compose.foundation.Image
+import com.example.herenciadevoces.ui.viewmodels.VariantSelectionViewModel
 
 @Composable
 fun VariantSelectionScreen(
-    viewModel: variantSelectionViewModel,
+    viewModel: VariantSelectionViewModel,
     navigateToSFS: (List<Int>) -> Unit
 ) {
     Box(
@@ -80,7 +78,7 @@ fun Header(modifier: Modifier) {
 @Composable
 fun Body(
     modifier: Modifier,
-    viewModel: variantSelectionViewModel,
+    viewModel: VariantSelectionViewModel,
     navigateToSFS: (List<Int>) -> Unit
 ) {
     val selectedVariants by viewModel.selectedLanguageVariants.collectAsState()

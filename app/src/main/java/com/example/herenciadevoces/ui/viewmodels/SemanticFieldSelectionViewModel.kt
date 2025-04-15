@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class semanticFieldSelectionViewModel @Inject constructor(
+class SemanticFieldSelectionViewModel @Inject constructor(
     private val getSemanticFields: GetSemanticFields
 ) : ViewModel() {
     private val _state = mutableStateOf(semanticFieldState())
